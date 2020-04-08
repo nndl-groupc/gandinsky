@@ -1,0 +1,593 @@
+
+
+Using TensorFlow backend.
+
+WARNING:tensorflow:From /usr/local/lib/python3.6/dist-packages/keras/backend/tensorflow_backend.py:66: The name tf.get_default_graph is deprecated. Please use tf.compat.v1.get_default_graph instead.
+
+WARNING:tensorflow:From /usr/local/lib/python3.6/dist-packages/keras/backend/tensorflow_backend.py:541: The name tf.placeholder is deprecated. Please use tf.compat.v1.placeholder instead.
+
+WARNING:tensorflow:From /usr/local/lib/python3.6/dist-packages/keras/backend/tensorflow_backend.py:4432: The name tf.random_uniform is deprecated. Please use tf.random.uniform instead.
+
+WARNING:tensorflow:From /usr/local/lib/python3.6/dist-packages/keras/backend/tensorflow_backend.py:148: The name tf.placeholder_with_default is deprecated. Please use tf.compat.v1.placeholder_with_default instead.
+
+WARNING:tensorflow:From /usr/local/lib/python3.6/dist-packages/keras/backend/tensorflow_backend.py:3733: calling dropout (from tensorflow.python.ops.nn_ops) with keep_prob is deprecated and will be removed in a future version.
+Instructions for updating:
+Please use `rate` instead of `keep_prob`. Rate should be set to `rate = 1 - keep_prob`.
+WARNING:tensorflow:From /usr/local/lib/python3.6/dist-packages/keras/backend/tensorflow_backend.py:190: The name tf.get_default_session is deprecated. Please use tf.compat.v1.get_default_session instead.
+
+WARNING:tensorflow:From /usr/local/lib/python3.6/dist-packages/keras/backend/tensorflow_backend.py:197: The name tf.ConfigProto is deprecated. Please use tf.compat.v1.ConfigProto instead.
+
+WARNING:tensorflow:From /usr/local/lib/python3.6/dist-packages/keras/backend/tensorflow_backend.py:203: The name tf.Session is deprecated. Please use tf.compat.v1.Session instead.
+
+WARNING:tensorflow:From /usr/local/lib/python3.6/dist-packages/keras/backend/tensorflow_backend.py:207: The name tf.global_variables is deprecated. Please use tf.compat.v1.global_variables instead.
+
+WARNING:tensorflow:From /usr/local/lib/python3.6/dist-packages/keras/backend/tensorflow_backend.py:216: The name tf.is_variable_initialized is deprecated. Please use tf.compat.v1.is_variable_initialized instead.
+
+WARNING:tensorflow:From /usr/local/lib/python3.6/dist-packages/keras/backend/tensorflow_backend.py:223: The name tf.variables_initializer is deprecated. Please use tf.compat.v1.variables_initializer instead.
+
+WARNING:tensorflow:From /usr/local/lib/python3.6/dist-packages/keras/backend/tensorflow_backend.py:2041: The name tf.nn.fused_batch_norm is deprecated. Please use tf.compat.v1.nn.fused_batch_norm instead.
+
+WARNING:tensorflow:From /usr/local/lib/python3.6/dist-packages/keras/optimizers.py:793: The name tf.train.Optimizer is deprecated. Please use tf.compat.v1.train.Optimizer instead.
+
+WARNING:tensorflow:From /usr/local/lib/python3.6/dist-packages/keras/backend/tensorflow_backend.py:3657: The name tf.log is deprecated. Please use tf.math.log instead.
+
+WARNING:tensorflow:From /tensorflow-1.15.2/python3.6/tensorflow_core/python/ops/nn_impl.py:183: where (from tensorflow.python.ops.array_ops) is deprecated and will be removed in a future version.
+Instructions for updating:
+Use tf.where in 2.0, which has the same broadcast rule as np.where
+WARNING:tensorflow:From /usr/local/lib/python3.6/dist-packages/keras/backend/tensorflow_backend.py:2239: The name tf.image.resize_nearest_neighbor is deprecated. Please use tf.compat.v1.image.resize_nearest_neighbor instead.
+
+Model: "sequential_2"
+_________________________________________________________________
+Layer (type)                 Output Shape              Param #   
+=================================================================
+dense_2 (Dense)              (None, 4096)              528384    
+_________________________________________________________________
+reshape_1 (Reshape)          (None, 4, 4, 256)         0         
+_________________________________________________________________
+up_sampling2d_1 (UpSampling2 (None, 8, 8, 256)         0         
+_________________________________________________________________
+conv2d_6 (Conv2D)            (None, 8, 8, 256)         590080    
+_________________________________________________________________
+batch_normalization_5 (Batch (None, 8, 8, 256)         1024      
+_________________________________________________________________
+activation_1 (Activation)    (None, 8, 8, 256)         0         
+_________________________________________________________________
+up_sampling2d_2 (UpSampling2 (None, 16, 16, 256)       0         
+_________________________________________________________________
+conv2d_7 (Conv2D)            (None, 16, 16, 256)       590080    
+_________________________________________________________________
+batch_normalization_6 (Batch (None, 16, 16, 256)       1024      
+_________________________________________________________________
+activation_2 (Activation)    (None, 16, 16, 256)       0         
+_________________________________________________________________
+up_sampling2d_3 (UpSampling2 (None, 32, 32, 256)       0         
+_________________________________________________________________
+conv2d_8 (Conv2D)            (None, 32, 32, 256)       590080    
+_________________________________________________________________
+batch_normalization_7 (Batch (None, 32, 32, 256)       1024      
+_________________________________________________________________
+activation_3 (Activation)    (None, 32, 32, 256)       0         
+_________________________________________________________________
+up_sampling2d_4 (UpSampling2 (None, 64, 64, 256)       0         
+_________________________________________________________________
+conv2d_9 (Conv2D)            (None, 64, 64, 256)       590080    
+_________________________________________________________________
+batch_normalization_8 (Batch (None, 64, 64, 256)       1024      
+_________________________________________________________________
+activation_4 (Activation)    (None, 64, 64, 256)       0         
+_________________________________________________________________
+up_sampling2d_5 (UpSampling2 (None, 128, 128, 256)     0         
+_________________________________________________________________
+conv2d_10 (Conv2D)           (None, 128, 128, 256)     590080    
+_________________________________________________________________
+batch_normalization_9 (Batch (None, 128, 128, 256)     1024      
+_________________________________________________________________
+activation_5 (Activation)    (None, 128, 128, 256)     0         
+=================================================================
+Total params: 3,483,904
+Trainable params: 3,481,344
+Non-trainable params: 2,560
+_________________________________________________________________
+
+/usr/local/lib/python3.6/dist-packages/keras/engine/training.py:493: UserWarning: Discrepancy between trainable weights and collected trainable weights, did you set `model.trainable` without calling `model.compile` after ?
+  'Discrepancy between trainable weights and collected trainable'
+
+WARNING:tensorflow:From /usr/local/lib/python3.6/dist-packages/keras/backend/tensorflow_backend.py:1033: The name tf.assign_add is deprecated. Please use tf.compat.v1.assign_add instead.
+
+WARNING:tensorflow:From /usr/local/lib/python3.6/dist-packages/keras/backend/tensorflow_backend.py:1020: The name tf.assign is deprecated. Please use tf.compat.v1.assign instead.
+
+/usr/local/lib/python3.6/dist-packages/keras/engine/training.py:493: UserWarning: Discrepancy between trainable weights and collected trainable weights, did you set `model.trainable` without calling `model.compile` after ?
+  'Discrepancy between trainable weights and collected trainable'
+
+0 epoch, Discriminator accuracy: 25.78125, Generator accuracy: 100.0
+
+/usr/local/lib/python3.6/dist-packages/keras/engine/training.py:493: UserWarning: Discrepancy between trainable weights and collected trainable weights, did you set `model.trainable` without calling `model.compile` after ?
+  'Discrepancy between trainable weights and collected trainable'
+
+100 epoch, Discriminator accuracy: 92.1875, Generator accuracy: 78.125
+200 epoch, Discriminator accuracy: 100.0, Generator accuracy: 25.0
+300 epoch, Discriminator accuracy: 77.34375, Generator accuracy: 0.0
+400 epoch, Discriminator accuracy: 79.6875, Generator accuracy: 89.0625
+500 epoch, Discriminator accuracy: 73.4375, Generator accuracy: 4.6875
+600 epoch, Discriminator accuracy: 84.375, Generator accuracy: 26.5625
+700 epoch, Discriminator accuracy: 95.3125, Generator accuracy: 35.9375
+800 epoch, Discriminator accuracy: 97.65625, Generator accuracy: 1.5625
+900 epoch, Discriminator accuracy: 46.875, Generator accuracy: 43.75
+1000 epoch, Discriminator accuracy: 52.34375, Generator accuracy: 6.25
+1100 epoch, Discriminator accuracy: 91.40625, Generator accuracy: 20.3125
+1200 epoch, Discriminator accuracy: 92.1875, Generator accuracy: 93.75
+1300 epoch, Discriminator accuracy: 28.125, Generator accuracy: 60.9375
+1400 epoch, Discriminator accuracy: 46.875, Generator accuracy: 1.5625
+1500 epoch, Discriminator accuracy: 57.03125, Generator accuracy: 57.8125
+1600 epoch, Discriminator accuracy: 11.71875, Generator accuracy: 7.8125
+1700 epoch, Discriminator accuracy: 53.125, Generator accuracy: 90.625
+1800 epoch, Discriminator accuracy: 69.53125, Generator accuracy: 68.75
+1900 epoch, Discriminator accuracy: 53.90625, Generator accuracy: 3.125
+2000 epoch, Discriminator accuracy: 78.90625, Generator accuracy: 70.3125
+2100 epoch, Discriminator accuracy: 63.28125, Generator accuracy: 1.5625
+2200 epoch, Discriminator accuracy: 89.84375, Generator accuracy: 1.5625
+2300 epoch, Discriminator accuracy: 43.75, Generator accuracy: 10.9375
+2400 epoch, Discriminator accuracy: 62.5, Generator accuracy: 40.625
+2500 epoch, Discriminator accuracy: 87.5, Generator accuracy: 67.1875
+2600 epoch, Discriminator accuracy: 28.125, Generator accuracy: 15.625
+2700 epoch, Discriminator accuracy: 78.125, Generator accuracy: 26.5625
+2800 epoch, Discriminator accuracy: 61.71875, Generator accuracy: 12.5
+2900 epoch, Discriminator accuracy: 57.8125, Generator accuracy: 54.6875
+3000 epoch, Discriminator accuracy: 61.71875, Generator accuracy: 21.875
+3100 epoch, Discriminator accuracy: 50.0, Generator accuracy: 14.0625
+3200 epoch, Discriminator accuracy: 91.40625, Generator accuracy: 32.8125
+3300 epoch, Discriminator accuracy: 54.6875, Generator accuracy: 3.125
+3400 epoch, Discriminator accuracy: 46.875, Generator accuracy: 31.25
+3500 epoch, Discriminator accuracy: 82.03125, Generator accuracy: 0.0
+3600 epoch, Discriminator accuracy: 89.84375, Generator accuracy: 18.75
+3700 epoch, Discriminator accuracy: 40.625, Generator accuracy: 15.625
+3800 epoch, Discriminator accuracy: 50.0, Generator accuracy: 12.5
+3900 epoch, Discriminator accuracy: 52.34375, Generator accuracy: 1.5625
+4000 epoch, Discriminator accuracy: 83.59375, Generator accuracy: 9.375
+4100 epoch, Discriminator accuracy: 57.03125, Generator accuracy: 21.875
+4200 epoch, Discriminator accuracy: 75.78125, Generator accuracy: 23.4375
+4300 epoch, Discriminator accuracy: 88.28125, Generator accuracy: 1.5625
+4400 epoch, Discriminator accuracy: 83.59375, Generator accuracy: 15.625
+4500 epoch, Discriminator accuracy: 77.34375, Generator accuracy: 31.25
+4600 epoch, Discriminator accuracy: 80.46875, Generator accuracy: 29.6875
+4700 epoch, Discriminator accuracy: 81.25, Generator accuracy: 15.625
+4800 epoch, Discriminator accuracy: 80.46875, Generator accuracy: 9.375
+4900 epoch, Discriminator accuracy: 92.96875, Generator accuracy: 3.125
+5000 epoch, Discriminator accuracy: 82.8125, Generator accuracy: 20.3125
+5100 epoch, Discriminator accuracy: 89.0625, Generator accuracy: 6.25
+5200 epoch, Discriminator accuracy: 39.0625, Generator accuracy: 10.9375
+5300 epoch, Discriminator accuracy: 78.125, Generator accuracy: 17.1875
+5400 epoch, Discriminator accuracy: 56.25, Generator accuracy: 4.6875
+5500 epoch, Discriminator accuracy: 77.34375, Generator accuracy: 3.125
+5600 epoch, Discriminator accuracy: 73.4375, Generator accuracy: 0.0
+5700 epoch, Discriminator accuracy: 68.75, Generator accuracy: 40.625
+5800 epoch, Discriminator accuracy: 63.28125, Generator accuracy: 31.25
+5900 epoch, Discriminator accuracy: 64.84375, Generator accuracy: 10.9375
+6000 epoch, Discriminator accuracy: 77.34375, Generator accuracy: 4.6875
+6100 epoch, Discriminator accuracy: 81.25, Generator accuracy: 68.75
+6200 epoch, Discriminator accuracy: 46.875, Generator accuracy: 15.625
+6300 epoch, Discriminator accuracy: 67.96875, Generator accuracy: 6.25
+6400 epoch, Discriminator accuracy: 50.0, Generator accuracy: 3.125
+6500 epoch, Discriminator accuracy: 71.875, Generator accuracy: 15.625
+6600 epoch, Discriminator accuracy: 52.34375, Generator accuracy: 6.25
+6700 epoch, Discriminator accuracy: 75.0, Generator accuracy: 6.25
+6800 epoch, Discriminator accuracy: 77.34375, Generator accuracy: 0.0
+6900 epoch, Discriminator accuracy: 71.09375, Generator accuracy: 3.125
+7000 epoch, Discriminator accuracy: 88.28125, Generator accuracy: 20.3125
+7100 epoch, Discriminator accuracy: 50.78125, Generator accuracy: 6.25
+7200 epoch, Discriminator accuracy: 89.84375, Generator accuracy: 6.25
+7300 epoch, Discriminator accuracy: 86.71875, Generator accuracy: 54.6875
+7400 epoch, Discriminator accuracy: 64.0625, Generator accuracy: 14.0625
+7500 epoch, Discriminator accuracy: 47.65625, Generator accuracy: 56.25
+7600 epoch, Discriminator accuracy: 95.3125, Generator accuracy: 35.9375
+7700 epoch, Discriminator accuracy: 96.875, Generator accuracy: 12.5
+7800 epoch, Discriminator accuracy: 54.6875, Generator accuracy: 7.8125
+7900 epoch, Discriminator accuracy: 88.28125, Generator accuracy: 1.5625
+8000 epoch, Discriminator accuracy: 88.28125, Generator accuracy: 29.6875
+8100 epoch, Discriminator accuracy: 92.1875, Generator accuracy: 0.0
+8200 epoch, Discriminator accuracy: 93.75, Generator accuracy: 21.875
+8300 epoch, Discriminator accuracy: 85.15625, Generator accuracy: 12.5
+8400 epoch, Discriminator accuracy: 81.25, Generator accuracy: 12.5
+8500 epoch, Discriminator accuracy: 87.5, Generator accuracy: 6.25
+8600 epoch, Discriminator accuracy: 93.75, Generator accuracy: 70.3125
+8700 epoch, Discriminator accuracy: 88.28125, Generator accuracy: 12.5
+8800 epoch, Discriminator accuracy: 99.21875, Generator accuracy: 4.6875
+8900 epoch, Discriminator accuracy: 77.34375, Generator accuracy: 1.5625
+9000 epoch, Discriminator accuracy: 91.40625, Generator accuracy: 7.8125
+9100 epoch, Discriminator accuracy: 89.84375, Generator accuracy: 17.1875
+9200 epoch, Discriminator accuracy: 94.53125, Generator accuracy: 15.625
+9300 epoch, Discriminator accuracy: 82.8125, Generator accuracy: 1.5625
+9400 epoch, Discriminator accuracy: 78.90625, Generator accuracy: 1.5625
+9500 epoch, Discriminator accuracy: 99.21875, Generator accuracy: 9.375
+9600 epoch, Discriminator accuracy: 96.875, Generator accuracy: 14.0625
+9700 epoch, Discriminator accuracy: 81.25, Generator accuracy: 0.0
+9800 epoch, Discriminator accuracy: 76.5625, Generator accuracy: 4.6875
+9900 epoch, Discriminator accuracy: 79.6875, Generator accuracy: 0.0
+10000 epoch, Discriminator accuracy: 86.71875, Generator accuracy: 0.0
+10100 epoch, Discriminator accuracy: 65.625, Generator accuracy: 3.125
+10200 epoch, Discriminator accuracy: 70.3125, Generator accuracy: 1.5625
+10300 epoch, Discriminator accuracy: 83.59375, Generator accuracy: 7.8125
+10400 epoch, Discriminator accuracy: 87.5, Generator accuracy: 0.0
+10500 epoch, Discriminator accuracy: 78.125, Generator accuracy: 1.5625
+10600 epoch, Discriminator accuracy: 69.53125, Generator accuracy: 3.125
+10700 epoch, Discriminator accuracy: 87.5, Generator accuracy: 14.0625
+10800 epoch, Discriminator accuracy: 86.71875, Generator accuracy: 4.6875
+10900 epoch, Discriminator accuracy: 78.125, Generator accuracy: 9.375
+11000 epoch, Discriminator accuracy: 55.46875, Generator accuracy: 6.25
+11100 epoch, Discriminator accuracy: 95.3125, Generator accuracy: 12.5
+11200 epoch, Discriminator accuracy: 78.90625, Generator accuracy: 17.1875
+11300 epoch, Discriminator accuracy: 89.84375, Generator accuracy: 0.0
+11400 epoch, Discriminator accuracy: 82.8125, Generator accuracy: 0.0
+11500 epoch, Discriminator accuracy: 97.65625, Generator accuracy: 7.8125
+11600 epoch, Discriminator accuracy: 96.875, Generator accuracy: 0.0
+11700 epoch, Discriminator accuracy: 60.15625, Generator accuracy: 0.0
+11800 epoch, Discriminator accuracy: 93.75, Generator accuracy: 4.6875
+11900 epoch, Discriminator accuracy: 89.84375, Generator accuracy: 4.6875
+12000 epoch, Discriminator accuracy: 98.4375, Generator accuracy: 1.5625
+12100 epoch, Discriminator accuracy: 83.59375, Generator accuracy: 9.375
+12200 epoch, Discriminator accuracy: 92.1875, Generator accuracy: 7.8125
+12300 epoch, Discriminator accuracy: 89.0625, Generator accuracy: 0.0
+12400 epoch, Discriminator accuracy: 92.1875, Generator accuracy: 4.6875
+12500 epoch, Discriminator accuracy: 90.625, Generator accuracy: 1.5625
+12600 epoch, Discriminator accuracy: 87.5, Generator accuracy: 21.875
+12700 epoch, Discriminator accuracy: 87.5, Generator accuracy: 3.125
+12800 epoch, Discriminator accuracy: 55.46875, Generator accuracy: 0.0
+12900 epoch, Discriminator accuracy: 90.625, Generator accuracy: 0.0
+13000 epoch, Discriminator accuracy: 99.21875, Generator accuracy: 0.0
+13100 epoch, Discriminator accuracy: 88.28125, Generator accuracy: 3.125
+13200 epoch, Discriminator accuracy: 100.0, Generator accuracy: 20.3125
+13300 epoch, Discriminator accuracy: 98.4375, Generator accuracy: 0.0
+13400 epoch, Discriminator accuracy: 91.40625, Generator accuracy: 0.0
+13500 epoch, Discriminator accuracy: 85.15625, Generator accuracy: 26.5625
+13600 epoch, Discriminator accuracy: 89.84375, Generator accuracy: 3.125
+13700 epoch, Discriminator accuracy: 92.1875, Generator accuracy: 1.5625
+13800 epoch, Discriminator accuracy: 95.3125, Generator accuracy: 3.125
+13900 epoch, Discriminator accuracy: 93.75, Generator accuracy: 1.5625
+14000 epoch, Discriminator accuracy: 63.28125, Generator accuracy: 31.25
+14100 epoch, Discriminator accuracy: 97.65625, Generator accuracy: 0.0
+14200 epoch, Discriminator accuracy: 94.53125, Generator accuracy: 0.0
+14300 epoch, Discriminator accuracy: 90.625, Generator accuracy: 6.25
+14400 epoch, Discriminator accuracy: 82.8125, Generator accuracy: 1.5625
+14500 epoch, Discriminator accuracy: 85.9375, Generator accuracy: 7.8125
+14600 epoch, Discriminator accuracy: 72.65625, Generator accuracy: 3.125
+14700 epoch, Discriminator accuracy: 91.40625, Generator accuracy: 7.8125
+14800 epoch, Discriminator accuracy: 62.5, Generator accuracy: 0.0
+14900 epoch, Discriminator accuracy: 98.4375, Generator accuracy: 4.6875
+15000 epoch, Discriminator accuracy: 89.84375, Generator accuracy: 9.375
+15100 epoch, Discriminator accuracy: 93.75, Generator accuracy: 23.4375
+15200 epoch, Discriminator accuracy: 63.28125, Generator accuracy: 15.625
+15300 epoch, Discriminator accuracy: 96.875, Generator accuracy: 7.8125
+15400 epoch, Discriminator accuracy: 99.21875, Generator accuracy: 0.0
+15500 epoch, Discriminator accuracy: 94.53125, Generator accuracy: 6.25
+15600 epoch, Discriminator accuracy: 87.5, Generator accuracy: 1.5625
+15700 epoch, Discriminator accuracy: 50.0, Generator accuracy: 7.8125
+15800 epoch, Discriminator accuracy: 89.84375, Generator accuracy: 7.8125
+15900 epoch, Discriminator accuracy: 96.09375, Generator accuracy: 9.375
+16000 epoch, Discriminator accuracy: 96.875, Generator accuracy: 1.5625
+16100 epoch, Discriminator accuracy: 89.84375, Generator accuracy: 4.6875
+16200 epoch, Discriminator accuracy: 90.625, Generator accuracy: 0.0
+16300 epoch, Discriminator accuracy: 90.625, Generator accuracy: 0.0
+16400 epoch, Discriminator accuracy: 97.65625, Generator accuracy: 1.5625
+16500 epoch, Discriminator accuracy: 100.0, Generator accuracy: 0.0
+16600 epoch, Discriminator accuracy: 69.53125, Generator accuracy: 37.5
+16700 epoch, Discriminator accuracy: 98.4375, Generator accuracy: 4.6875
+16800 epoch, Discriminator accuracy: 87.5, Generator accuracy: 4.6875
+16900 epoch, Discriminator accuracy: 97.65625, Generator accuracy: 0.0
+17000 epoch, Discriminator accuracy: 84.375, Generator accuracy: 10.9375
+17100 epoch, Discriminator accuracy: 97.65625, Generator accuracy: 1.5625
+17200 epoch, Discriminator accuracy: 94.53125, Generator accuracy: 1.5625
+17300 epoch, Discriminator accuracy: 98.4375, Generator accuracy: 0.0
+17400 epoch, Discriminator accuracy: 73.4375, Generator accuracy: 4.6875
+17500 epoch, Discriminator accuracy: 100.0, Generator accuracy: 0.0
+17600 epoch, Discriminator accuracy: 69.53125, Generator accuracy: 4.6875
+17700 epoch, Discriminator accuracy: 99.21875, Generator accuracy: 0.0
+17800 epoch, Discriminator accuracy: 89.0625, Generator accuracy: 12.5
+17900 epoch, Discriminator accuracy: 22.65625, Generator accuracy: 1.5625
+18000 epoch, Discriminator accuracy: 96.875, Generator accuracy: 6.25
+18100 epoch, Discriminator accuracy: 85.9375, Generator accuracy: 9.375
+18200 epoch, Discriminator accuracy: 95.3125, Generator accuracy: 3.125
+18300 epoch, Discriminator accuracy: 90.625, Generator accuracy: 0.0
+18400 epoch, Discriminator accuracy: 53.90625, Generator accuracy: 7.8125
+18500 epoch, Discriminator accuracy: 95.3125, Generator accuracy: 6.25
+18600 epoch, Discriminator accuracy: 89.0625, Generator accuracy: 3.125
+18700 epoch, Discriminator accuracy: 90.625, Generator accuracy: 12.5
+18800 epoch, Discriminator accuracy: 99.21875, Generator accuracy: 0.0
+18900 epoch, Discriminator accuracy: 92.1875, Generator accuracy: 0.0
+19000 epoch, Discriminator accuracy: 46.875, Generator accuracy: 0.0
+19100 epoch, Discriminator accuracy: 90.625, Generator accuracy: 3.125
+19200 epoch, Discriminator accuracy: 81.25, Generator accuracy: 9.375
+19300 epoch, Discriminator accuracy: 89.84375, Generator accuracy: 15.625
+19400 epoch, Discriminator accuracy: 99.21875, Generator accuracy: 1.5625
+19500 epoch, Discriminator accuracy: 97.65625, Generator accuracy: 6.25
+19600 epoch, Discriminator accuracy: 92.1875, Generator accuracy: 1.5625
+19700 epoch, Discriminator accuracy: 91.40625, Generator accuracy: 6.25
+19800 epoch, Discriminator accuracy: 95.3125, Generator accuracy: 1.5625
+19900 epoch, Discriminator accuracy: 97.65625, Generator accuracy: 4.6875
+20000 epoch, Discriminator accuracy: 77.34375, Generator accuracy: 17.1875
+20100 epoch, Discriminator accuracy: 96.875, Generator accuracy: 7.8125
+20200 epoch, Discriminator accuracy: 99.21875, Generator accuracy: 1.5625
+20300 epoch, Discriminator accuracy: 92.96875, Generator accuracy: 3.125
+20400 epoch, Discriminator accuracy: 89.0625, Generator accuracy: 1.5625
+20500 epoch, Discriminator accuracy: 80.46875, Generator accuracy: 0.0
+20600 epoch, Discriminator accuracy: 86.71875, Generator accuracy: 3.125
+20700 epoch, Discriminator accuracy: 97.65625, Generator accuracy: 0.0
+20800 epoch, Discriminator accuracy: 91.40625, Generator accuracy: 1.5625
+20900 epoch, Discriminator accuracy: 82.03125, Generator accuracy: 6.25
+21000 epoch, Discriminator accuracy: 90.625, Generator accuracy: 3.125
+21100 epoch, Discriminator accuracy: 99.21875, Generator accuracy: 1.5625
+21200 epoch, Discriminator accuracy: 96.875, Generator accuracy: 0.0
+21300 epoch, Discriminator accuracy: 84.375, Generator accuracy: 6.25
+21400 epoch, Discriminator accuracy: 81.25, Generator accuracy: 31.25
+21500 epoch, Discriminator accuracy: 72.65625, Generator accuracy: 7.8125
+21600 epoch, Discriminator accuracy: 51.5625, Generator accuracy: 6.25
+21700 epoch, Discriminator accuracy: 92.96875, Generator accuracy: 7.8125
+21800 epoch, Discriminator accuracy: 98.4375, Generator accuracy: 0.0
+21900 epoch, Discriminator accuracy: 92.96875, Generator accuracy: 6.25
+22000 epoch, Discriminator accuracy: 95.3125, Generator accuracy: 0.0
+22100 epoch, Discriminator accuracy: 85.9375, Generator accuracy: 7.8125
+22200 epoch, Discriminator accuracy: 59.375, Generator accuracy: 1.5625
+22300 epoch, Discriminator accuracy: 87.5, Generator accuracy: 7.8125
+22400 epoch, Discriminator accuracy: 97.65625, Generator accuracy: 1.5625
+22500 epoch, Discriminator accuracy: 93.75, Generator accuracy: 1.5625
+22600 epoch, Discriminator accuracy: 94.53125, Generator accuracy: 3.125
+22700 epoch, Discriminator accuracy: 100.0, Generator accuracy: 0.0
+22800 epoch, Discriminator accuracy: 78.125, Generator accuracy: 1.5625
+22900 epoch, Discriminator accuracy: 94.53125, Generator accuracy: 10.9375
+23000 epoch, Discriminator accuracy: 100.0, Generator accuracy: 1.5625
+23100 epoch, Discriminator accuracy: 96.875, Generator accuracy: 1.5625
+23200 epoch, Discriminator accuracy: 96.09375, Generator accuracy: 3.125
+23300 epoch, Discriminator accuracy: 75.0, Generator accuracy: 12.5
+23400 epoch, Discriminator accuracy: 86.71875, Generator accuracy: 3.125
+23500 epoch, Discriminator accuracy: 96.09375, Generator accuracy: 3.125
+23600 epoch, Discriminator accuracy: 91.40625, Generator accuracy: 0.0
+23700 epoch, Discriminator accuracy: 96.09375, Generator accuracy: 6.25
+23800 epoch, Discriminator accuracy: 99.21875, Generator accuracy: 0.0
+23900 epoch, Discriminator accuracy: 100.0, Generator accuracy: 0.0
+24000 epoch, Discriminator accuracy: 90.625, Generator accuracy: 15.625
+24100 epoch, Discriminator accuracy: 90.625, Generator accuracy: 1.5625
+24200 epoch, Discriminator accuracy: 86.71875, Generator accuracy: 1.5625
+24300 epoch, Discriminator accuracy: 96.09375, Generator accuracy: 1.5625
+24400 epoch, Discriminator accuracy: 98.4375, Generator accuracy: 1.5625
+24500 epoch, Discriminator accuracy: 99.21875, Generator accuracy: 3.125
+24600 epoch, Discriminator accuracy: 100.0, Generator accuracy: 0.0
+24700 epoch, Discriminator accuracy: 67.96875, Generator accuracy: 4.6875
+24800 epoch, Discriminator accuracy: 85.9375, Generator accuracy: 4.6875
+24900 epoch, Discriminator accuracy: 93.75, Generator accuracy: 6.25
+25000 epoch, Discriminator accuracy: 90.625, Generator accuracy: 3.125
+25100 epoch, Discriminator accuracy: 66.40625, Generator accuracy: 1.5625
+25200 epoch, Discriminator accuracy: 99.21875, Generator accuracy: 9.375
+25300 epoch, Discriminator accuracy: 96.09375, Generator accuracy: 6.25
+25400 epoch, Discriminator accuracy: 100.0, Generator accuracy: 1.5625
+25500 epoch, Discriminator accuracy: 88.28125, Generator accuracy: 0.0
+25600 epoch, Discriminator accuracy: 98.4375, Generator accuracy: 0.0
+25700 epoch, Discriminator accuracy: 78.125, Generator accuracy: 9.375
+25800 epoch, Discriminator accuracy: 98.4375, Generator accuracy: 0.0
+25900 epoch, Discriminator accuracy: 95.3125, Generator accuracy: 3.125
+26000 epoch, Discriminator accuracy: 100.0, Generator accuracy: 3.125
+26100 epoch, Discriminator accuracy: 94.53125, Generator accuracy: 6.25
+26200 epoch, Discriminator accuracy: 96.09375, Generator accuracy: 0.0
+26300 epoch, Discriminator accuracy: 78.90625, Generator accuracy: 0.0
+26400 epoch, Discriminator accuracy: 96.09375, Generator accuracy: 1.5625
+26500 epoch, Discriminator accuracy: 96.875, Generator accuracy: 3.125
+26600 epoch, Discriminator accuracy: 98.4375, Generator accuracy: 29.6875
+26700 epoch, Discriminator accuracy: 100.0, Generator accuracy: 1.5625
+26800 epoch, Discriminator accuracy: 82.03125, Generator accuracy: 4.6875
+26900 epoch, Discriminator accuracy: 98.4375, Generator accuracy: 0.0
+27000 epoch, Discriminator accuracy: 99.21875, Generator accuracy: 1.5625
+27100 epoch, Discriminator accuracy: 96.875, Generator accuracy: 0.0
+27200 epoch, Discriminator accuracy: 89.0625, Generator accuracy: 3.125
+27300 epoch, Discriminator accuracy: 89.0625, Generator accuracy: 20.3125
+27400 epoch, Discriminator accuracy: 92.96875, Generator accuracy: 3.125
+27500 epoch, Discriminator accuracy: 96.875, Generator accuracy: 0.0
+27600 epoch, Discriminator accuracy: 99.21875, Generator accuracy: 3.125
+27700 epoch, Discriminator accuracy: 91.40625, Generator accuracy: 3.125
+27800 epoch, Discriminator accuracy: 89.84375, Generator accuracy: 10.9375
+27900 epoch, Discriminator accuracy: 100.0, Generator accuracy: 1.5625
+28000 epoch, Discriminator accuracy: 77.34375, Generator accuracy: 4.6875
+28100 epoch, Discriminator accuracy: 41.40625, Generator accuracy: 9.375
+28200 epoch, Discriminator accuracy: 92.96875, Generator accuracy: 10.9375
+28300 epoch, Discriminator accuracy: 94.53125, Generator accuracy: 1.5625
+28400 epoch, Discriminator accuracy: 82.03125, Generator accuracy: 3.125
+28500 epoch, Discriminator accuracy: 94.53125, Generator accuracy: 9.375
+28600 epoch, Discriminator accuracy: 89.0625, Generator accuracy: 0.0
+28700 epoch, Discriminator accuracy: 98.4375, Generator accuracy: 3.125
+28800 epoch, Discriminator accuracy: 89.84375, Generator accuracy: 7.8125
+28900 epoch, Discriminator accuracy: 100.0, Generator accuracy: 0.0
+29000 epoch, Discriminator accuracy: 90.625, Generator accuracy: 0.0
+29100 epoch, Discriminator accuracy: 100.0, Generator accuracy: 0.0
+29200 epoch, Discriminator accuracy: 82.8125, Generator accuracy: 1.5625
+29300 epoch, Discriminator accuracy: 96.09375, Generator accuracy: 6.25
+29400 epoch, Discriminator accuracy: 98.4375, Generator accuracy: 3.125
+29500 epoch, Discriminator accuracy: 83.59375, Generator accuracy: 1.5625
+29600 epoch, Discriminator accuracy: 99.21875, Generator accuracy: 0.0
+29700 epoch, Discriminator accuracy: 97.65625, Generator accuracy: 3.125
+29800 epoch, Discriminator accuracy: 97.65625, Generator accuracy: 0.0
+29900 epoch, Discriminator accuracy: 85.9375, Generator accuracy: 9.375
+30000 epoch, Discriminator accuracy: 82.03125, Generator accuracy: 3.125
+30100 epoch, Discriminator accuracy: 89.0625, Generator accuracy: 3.125
+30200 epoch, Discriminator accuracy: 89.84375, Generator accuracy: 4.6875
+30300 epoch, Discriminator accuracy: 89.0625, Generator accuracy: 4.6875
+30400 epoch, Discriminator accuracy: 100.0, Generator accuracy: 1.5625
+30500 epoch, Discriminator accuracy: 64.84375, Generator accuracy: 1.5625
+30600 epoch, Discriminator accuracy: 99.21875, Generator accuracy: 1.5625
+30700 epoch, Discriminator accuracy: 98.4375, Generator accuracy: 3.125
+30800 epoch, Discriminator accuracy: 96.875, Generator accuracy: 4.6875
+30900 epoch, Discriminator accuracy: 96.875, Generator accuracy: 6.25
+31000 epoch, Discriminator accuracy: 96.875, Generator accuracy: 0.0
+31100 epoch, Discriminator accuracy: 78.90625, Generator accuracy: 3.125
+31200 epoch, Discriminator accuracy: 79.6875, Generator accuracy: 3.125
+31300 epoch, Discriminator accuracy: 96.875, Generator accuracy: 1.5625
+31400 epoch, Discriminator accuracy: 79.6875, Generator accuracy: 1.5625
+31500 epoch, Discriminator accuracy: 94.53125, Generator accuracy: 1.5625
+31600 epoch, Discriminator accuracy: 96.09375, Generator accuracy: 0.0
+31700 epoch, Discriminator accuracy: 98.4375, Generator accuracy: 0.0
+31800 epoch, Discriminator accuracy: 97.65625, Generator accuracy: 1.5625
+31900 epoch, Discriminator accuracy: 72.65625, Generator accuracy: 3.125
+32000 epoch, Discriminator accuracy: 50.78125, Generator accuracy: 0.0
+32100 epoch, Discriminator accuracy: 78.90625, Generator accuracy: 7.8125
+32200 epoch, Discriminator accuracy: 98.4375, Generator accuracy: 1.5625
+32300 epoch, Discriminator accuracy: 96.09375, Generator accuracy: 4.6875
+32400 epoch, Discriminator accuracy: 98.4375, Generator accuracy: 1.5625
+32500 epoch, Discriminator accuracy: 95.3125, Generator accuracy: 7.8125
+32600 epoch, Discriminator accuracy: 95.3125, Generator accuracy: 1.5625
+32700 epoch, Discriminator accuracy: 96.875, Generator accuracy: 4.6875
+32800 epoch, Discriminator accuracy: 98.4375, Generator accuracy: 0.0
+32900 epoch, Discriminator accuracy: 96.875, Generator accuracy: 1.5625
+33000 epoch, Discriminator accuracy: 99.21875, Generator accuracy: 9.375
+33100 epoch, Discriminator accuracy: 99.21875, Generator accuracy: 1.5625
+33200 epoch, Discriminator accuracy: 85.9375, Generator accuracy: 1.5625
+33300 epoch, Discriminator accuracy: 100.0, Generator accuracy: 1.5625
+33400 epoch, Discriminator accuracy: 92.1875, Generator accuracy: 1.5625
+33500 epoch, Discriminator accuracy: 99.21875, Generator accuracy: 1.5625
+33600 epoch, Discriminator accuracy: 89.0625, Generator accuracy: 3.125
+33700 epoch, Discriminator accuracy: 100.0, Generator accuracy: 0.0
+33800 epoch, Discriminator accuracy: 99.21875, Generator accuracy: 0.0
+33900 epoch, Discriminator accuracy: 96.09375, Generator accuracy: 1.5625
+34000 epoch, Discriminator accuracy: 96.09375, Generator accuracy: 3.125
+34100 epoch, Discriminator accuracy: 99.21875, Generator accuracy: 0.0
+34200 epoch, Discriminator accuracy: 75.0, Generator accuracy: 0.0
+34300 epoch, Discriminator accuracy: 99.21875, Generator accuracy: 3.125
+34400 epoch, Discriminator accuracy: 100.0, Generator accuracy: 0.0
+34500 epoch, Discriminator accuracy: 98.4375, Generator accuracy: 4.6875
+34600 epoch, Discriminator accuracy: 98.4375, Generator accuracy: 0.0
+34700 epoch, Discriminator accuracy: 99.21875, Generator accuracy: 3.125
+34800 epoch, Discriminator accuracy: 96.875, Generator accuracy: 6.25
+34900 epoch, Discriminator accuracy: 98.4375, Generator accuracy: 0.0
+35000 epoch, Discriminator accuracy: 95.3125, Generator accuracy: 0.0
+35100 epoch, Discriminator accuracy: 96.09375, Generator accuracy: 3.125
+35200 epoch, Discriminator accuracy: 99.21875, Generator accuracy: 0.0
+35300 epoch, Discriminator accuracy: 86.71875, Generator accuracy: 1.5625
+35400 epoch, Discriminator accuracy: 100.0, Generator accuracy: 3.125
+35500 epoch, Discriminator accuracy: 99.21875, Generator accuracy: 0.0
+35600 epoch, Discriminator accuracy: 95.3125, Generator accuracy: 1.5625
+35700 epoch, Discriminator accuracy: 99.21875, Generator accuracy: 0.0
+35800 epoch, Discriminator accuracy: 95.3125, Generator accuracy: 0.0
+35900 epoch, Discriminator accuracy: 98.4375, Generator accuracy: 4.6875
+36000 epoch, Discriminator accuracy: 65.625, Generator accuracy: 0.0
+36100 epoch, Discriminator accuracy: 96.875, Generator accuracy: 4.6875
+36200 epoch, Discriminator accuracy: 82.8125, Generator accuracy: 4.6875
+36300 epoch, Discriminator accuracy: 98.4375, Generator accuracy: 1.5625
+36400 epoch, Discriminator accuracy: 97.65625, Generator accuracy: 0.0
+36500 epoch, Discriminator accuracy: 100.0, Generator accuracy: 0.0
+36600 epoch, Discriminator accuracy: 90.625, Generator accuracy: 1.5625
+36700 epoch, Discriminator accuracy: 93.75, Generator accuracy: 3.125
+36800 epoch, Discriminator accuracy: 92.1875, Generator accuracy: 0.0
+36900 epoch, Discriminator accuracy: 96.875, Generator accuracy: 0.0
+37000 epoch, Discriminator accuracy: 98.4375, Generator accuracy: 9.375
+37100 epoch, Discriminator accuracy: 90.625, Generator accuracy: 3.125
+37200 epoch, Discriminator accuracy: 94.53125, Generator accuracy: 1.5625
+37300 epoch, Discriminator accuracy: 98.4375, Generator accuracy: 0.0
+37400 epoch, Discriminator accuracy: 95.3125, Generator accuracy: 4.6875
+37500 epoch, Discriminator accuracy: 96.09375, Generator accuracy: 1.5625
+37600 epoch, Discriminator accuracy: 77.34375, Generator accuracy: 6.25
+37700 epoch, Discriminator accuracy: 99.21875, Generator accuracy: 1.5625
+37800 epoch, Discriminator accuracy: 73.4375, Generator accuracy: 29.6875
+37900 epoch, Discriminator accuracy: 99.21875, Generator accuracy: 3.125
+38000 epoch, Discriminator accuracy: 99.21875, Generator accuracy: 3.125
+38100 epoch, Discriminator accuracy: 88.28125, Generator accuracy: 4.6875
+38200 epoch, Discriminator accuracy: 99.21875, Generator accuracy: 0.0
+38300 epoch, Discriminator accuracy: 100.0, Generator accuracy: 0.0
+38400 epoch, Discriminator accuracy: 91.40625, Generator accuracy: 6.25
+38500 epoch, Discriminator accuracy: 82.03125, Generator accuracy: 1.5625
+38600 epoch, Discriminator accuracy: 96.875, Generator accuracy: 4.6875
+38700 epoch, Discriminator accuracy: 83.59375, Generator accuracy: 23.4375
+38800 epoch, Discriminator accuracy: 95.3125, Generator accuracy: 0.0
+38900 epoch, Discriminator accuracy: 96.09375, Generator accuracy: 1.5625
+39000 epoch, Discriminator accuracy: 100.0, Generator accuracy: 0.0
+39100 epoch, Discriminator accuracy: 99.21875, Generator accuracy: 4.6875
+39200 epoch, Discriminator accuracy: 82.03125, Generator accuracy: 3.125
+39300 epoch, Discriminator accuracy: 86.71875, Generator accuracy: 6.25
+39400 epoch, Discriminator accuracy: 96.875, Generator accuracy: 4.6875
+39500 epoch, Discriminator accuracy: 94.53125, Generator accuracy: 0.0
+39600 epoch, Discriminator accuracy: 97.65625, Generator accuracy: 0.0
+39700 epoch, Discriminator accuracy: 98.4375, Generator accuracy: 0.0
+39800 epoch, Discriminator accuracy: 94.53125, Generator accuracy: 1.5625
+39900 epoch, Discriminator accuracy: 99.21875, Generator accuracy: 1.5625
+40000 epoch, Discriminator accuracy: 68.75, Generator accuracy: 3.125
+40100 epoch, Discriminator accuracy: 98.4375, Generator accuracy: 0.0
+40200 epoch, Discriminator accuracy: 100.0, Generator accuracy: 0.0
+40300 epoch, Discriminator accuracy: 92.1875, Generator accuracy: 3.125
+40400 epoch, Discriminator accuracy: 76.5625, Generator accuracy: 7.8125
+40500 epoch, Discriminator accuracy: 92.1875, Generator accuracy: 0.0
+40600 epoch, Discriminator accuracy: 87.5, Generator accuracy: 0.0
+40700 epoch, Discriminator accuracy: 89.0625, Generator accuracy: 0.0
+40800 epoch, Discriminator accuracy: 88.28125, Generator accuracy: 0.0
+40900 epoch, Discriminator accuracy: 98.4375, Generator accuracy: 1.5625
+41000 epoch, Discriminator accuracy: 72.65625, Generator accuracy: 9.375
+41100 epoch, Discriminator accuracy: 96.875, Generator accuracy: 1.5625
+41200 epoch, Discriminator accuracy: 89.84375, Generator accuracy: 0.0
+41300 epoch, Discriminator accuracy: 97.65625, Generator accuracy: 1.5625
+41400 epoch, Discriminator accuracy: 95.3125, Generator accuracy: 1.5625
+41500 epoch, Discriminator accuracy: 97.65625, Generator accuracy: 0.0
+41600 epoch, Discriminator accuracy: 90.625, Generator accuracy: 4.6875
+41700 epoch, Discriminator accuracy: 74.21875, Generator accuracy: 20.3125
+41800 epoch, Discriminator accuracy: 97.65625, Generator accuracy: 0.0
+41900 epoch, Discriminator accuracy: 89.84375, Generator accuracy: 17.1875
+42000 epoch, Discriminator accuracy: 94.53125, Generator accuracy: 3.125
+42100 epoch, Discriminator accuracy: 96.875, Generator accuracy: 0.0
+42200 epoch, Discriminator accuracy: 100.0, Generator accuracy: 0.0
+42300 epoch, Discriminator accuracy: 54.6875, Generator accuracy: 18.75
+42400 epoch, Discriminator accuracy: 97.65625, Generator accuracy: 7.8125
+42500 epoch, Discriminator accuracy: 82.03125, Generator accuracy: 7.8125
+42600 epoch, Discriminator accuracy: 97.65625, Generator accuracy: 1.5625
+42700 epoch, Discriminator accuracy: 89.84375, Generator accuracy: 3.125
+42800 epoch, Discriminator accuracy: 95.3125, Generator accuracy: 1.5625
+42900 epoch, Discriminator accuracy: 99.21875, Generator accuracy: 3.125
+43000 epoch, Discriminator accuracy: 82.03125, Generator accuracy: 9.375
+43100 epoch, Discriminator accuracy: 98.4375, Generator accuracy: 1.5625
+43200 epoch, Discriminator accuracy: 81.25, Generator accuracy: 17.1875
+43300 epoch, Discriminator accuracy: 96.875, Generator accuracy: 1.5625
+43400 epoch, Discriminator accuracy: 77.34375, Generator accuracy: 9.375
+43500 epoch, Discriminator accuracy: 92.1875, Generator accuracy: 0.0
+43600 epoch, Discriminator accuracy: 97.65625, Generator accuracy: 0.0
+43700 epoch, Discriminator accuracy: 88.28125, Generator accuracy: 1.5625
+43800 epoch, Discriminator accuracy: 99.21875, Generator accuracy: 0.0
+43900 epoch, Discriminator accuracy: 100.0, Generator accuracy: 0.0
+44000 epoch, Discriminator accuracy: 99.21875, Generator accuracy: 0.0
+44100 epoch, Discriminator accuracy: 94.53125, Generator accuracy: 3.125
+44200 epoch, Discriminator accuracy: 85.15625, Generator accuracy: 0.0
+44300 epoch, Discriminator accuracy: 87.5, Generator accuracy: 14.0625
+44400 epoch, Discriminator accuracy: 95.3125, Generator accuracy: 0.0
+44500 epoch, Discriminator accuracy: 100.0, Generator accuracy: 1.5625
+44600 epoch, Discriminator accuracy: 99.21875, Generator accuracy: 0.0
+44700 epoch, Discriminator accuracy: 96.09375, Generator accuracy: 0.0
+44800 epoch, Discriminator accuracy: 95.3125, Generator accuracy: 0.0
+44900 epoch, Discriminator accuracy: 87.5, Generator accuracy: 6.25
+45000 epoch, Discriminator accuracy: 99.21875, Generator accuracy: 4.6875
+45100 epoch, Discriminator accuracy: 100.0, Generator accuracy: 0.0
+45200 epoch, Discriminator accuracy: 86.71875, Generator accuracy: 1.5625
+45300 epoch, Discriminator accuracy: 100.0, Generator accuracy: 0.0
+45400 epoch, Discriminator accuracy: 87.5, Generator accuracy: 4.6875
+45500 epoch, Discriminator accuracy: 100.0, Generator accuracy: 0.0
+45600 epoch, Discriminator accuracy: 97.65625, Generator accuracy: 0.0
+45700 epoch, Discriminator accuracy: 96.09375, Generator accuracy: 1.5625
+45800 epoch, Discriminator accuracy: 96.875, Generator accuracy: 1.5625
+45900 epoch, Discriminator accuracy: 90.625, Generator accuracy: 0.0
+46000 epoch, Discriminator accuracy: 78.90625, Generator accuracy: 3.125
+46100 epoch, Discriminator accuracy: 92.96875, Generator accuracy: 1.5625
+46200 epoch, Discriminator accuracy: 87.5, Generator accuracy: 1.5625
+46300 epoch, Discriminator accuracy: 92.96875, Generator accuracy: 1.5625
+46400 epoch, Discriminator accuracy: 99.21875, Generator accuracy: 0.0
+46500 epoch, Discriminator accuracy: 87.5, Generator accuracy: 0.0
+46600 epoch, Discriminator accuracy: 68.75, Generator accuracy: 4.6875
+46700 epoch, Discriminator accuracy: 96.09375, Generator accuracy: 4.6875
+46800 epoch, Discriminator accuracy: 99.21875, Generator accuracy: 3.125
+46900 epoch, Discriminator accuracy: 99.21875, Generator accuracy: 0.0
+47000 epoch, Discriminator accuracy: 97.65625, Generator accuracy: 3.125
+47100 epoch, Discriminator accuracy: 85.9375, Generator accuracy: 10.9375
+47200 epoch, Discriminator accuracy: 98.4375, Generator accuracy: 0.0
+47300 epoch, Discriminator accuracy: 100.0, Generator accuracy: 0.0
+47400 epoch, Discriminator accuracy: 97.65625, Generator accuracy: 3.125
+47500 epoch, Discriminator accuracy: 100.0, Generator accuracy: 4.6875
+47600 epoch, Discriminator accuracy: 100.0, Generator accuracy: 0.0
+47700 epoch, Discriminator accuracy: 99.21875, Generator accuracy: 0.0
+47800 epoch, Discriminator accuracy: 82.8125, Generator accuracy: 12.5
+47900 epoch, Discriminator accuracy: 96.09375, Generator accuracy: 6.25
+48000 epoch, Discriminator accuracy: 100.0, Generator accuracy: 1.5625
+48100 epoch, Discriminator accuracy: 92.96875, Generator accuracy: 0.0
+48200 epoch, Discriminator accuracy: 93.75, Generator accuracy: 3.125
+48300 epoch, Discriminator accuracy: 99.21875, Generator accuracy: 3.125
+48400 epoch, Discriminator accuracy: 99.21875, Generator accuracy: 1.5625
+48500 epoch, Discriminator accuracy: 81.25, Generator accuracy: 0.0
+48600 epoch, Discriminator accuracy: 97.65625, Generator accuracy: 0.0
+
