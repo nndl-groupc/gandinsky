@@ -1,3 +1,16 @@
+"""
+Title: GANdinsky
+Description: Creating art from portrait and abstract datasets
+Course: Neural Networks and Deep Learning
+Instructor: Dr. Farid Alizadeh
+Group: C
+Team Members: Elnaz Asghari, Ruiwen Zhang, Sunit Nair
+@author: groupc.nndl
+"""
+
+#The following commented line must be run in a new Colab session before running the actual code
+#%tensorflow_version 1.x
+
 from keras.layers import Input, Reshape, Dropout, Dense, Flatten, BatchNormalization, Activation, ZeroPadding2D
 from keras.layers.advanced_activations import LeakyReLU
 from keras.layers.convolutional import UpSampling2D, Conv2D
@@ -6,20 +19,37 @@ from keras.optimizers import Adam
 import numpy as np
 from PIL import Image
 import os
+from google.colab import files
+from google.colab import drive
+import time
 
-# Preview image Frame
+drive.mount('/content/drive', force_remount=True)
+
+dir_ext=time.strftime('%Y%m%d%H%M%S')
+print("Creating output folder on colab with name:",dir_ext)
+drive_path='drive/My Drive/colab_output/'+dir_ext
+if not os.path.exists(drive_path):
+        os.makedirs(drive_path)
+
+# Grid to view generated images
 PREVIEW_ROWS = 4
-PREVIEW_COLS = 7
+PREVIEW_COLS = 6
 PREVIEW_MARGIN = 4
-SAVE_FREQ = 100# Size vector to generate images from
-NOISE_SIZE = 128# Configuration
-EPOCHS = 50000 # number of iterations
-BATCH_SIZE = 64
+
+#Other hyperparameters
+SAVE_FREQ = 100 #Save images every n iterations
+NOISE_SIZE = 128 #Starting point for image generation
+EPOCHS = 40000 #Total number of iterations
+BATCH_SIZE = 64 #Batch size for epoch
 GENERATE_RES = 3
 IMAGE_SIZE = 128 # rows/cols
 IMAGE_CHANNELS = 3
+
+#Ensure that Google Drive is munted and file is available at path (or change path as required)
+#Reading data from .npy file containing compressed image data (128 x 128) stored on Google Drive
 training_data=np.load('drive/My Drive/prepared/abstract_data.npy')
 
+#Build discriminator model
 def build_discriminator(image_shape):    
     model = Sequential()
 
@@ -55,6 +85,7 @@ def build_discriminator(image_shape):
     validity = model(input_image)
     return Model(input_image, validity)
 
+#Build generator model
 def build_generator(noise_size, channels):
     model = Sequential()
     model.add(Dense(4 * 4 * 256, activation="relu", input_dim=noise_size))
@@ -85,6 +116,7 @@ def build_generator(noise_size, channels):
     
     return Model(input, generated_image)
 
+#Function to save images at every SAVE_FREQ iteration
 def save_images(cnt, noise):
     image_array = np.full((PREVIEW_MARGIN + (PREVIEW_ROWS * (IMAGE_SIZE + PREVIEW_MARGIN)), PREVIEW_MARGIN + (PREVIEW_COLS * (IMAGE_SIZE + PREVIEW_MARGIN)), 3), 255, dtype=np.uint8)
 
@@ -99,7 +131,7 @@ def save_images(cnt, noise):
             image_array[r:r + IMAGE_SIZE, c:c + IMAGE_SIZE] = generated_images[image_count] * 255
             image_count += 1
 
-    output_path = 'output'
+    output_path = 'drive/My Drive/colab_output/'+dir_ext+'/images'
     if not os.path.exists(output_path):
         os.makedirs(output_path)
 
@@ -107,6 +139,19 @@ def save_images(cnt, noise):
     im = Image.fromarray(image_array)
     im.save(filename)
 
+#Function to save models after completion
+def save_models(discriminator, generator, combined):
+    model_path = 'drive/My Drive/colab_output/'+dir_ext+'/models'
+    if not os.path.exists(model_path):
+        os.makedirs(model_path)
+    d_filename = os.path.join(model_path,'discriminator.h5')
+    g_filename = os.path.join(model_path,'generator.h5')
+    c_filename = os.path.join(model_path,'combined.h5')
+    discriminator.save(d_filename)
+    generator.save(g_filename)
+    combined.save(c_filename)
+
+   
 image_shape = (IMAGE_SIZE, IMAGE_SIZE, IMAGE_CHANNELS)
 optimizer = Adam(1.5e-4, 0.5)
 discriminator = build_discriminator(image_shape)
@@ -116,6 +161,7 @@ generator = build_generator(NOISE_SIZE, IMAGE_CHANNELS)
 random_input = Input(shape=(NOISE_SIZE,))
 generated_image = generator(random_input)
 
+#Ensures that the generator fits weights to better learn from dataset and not just to beat the discriminator
 discriminator.trainable = False
 validity = discriminator(generated_image)
 
@@ -127,7 +173,7 @@ y_fake = np.zeros((BATCH_SIZE, 1))
 
 fixed_noise = np.random.normal(0, 1, (PREVIEW_ROWS * PREVIEW_COLS, NOISE_SIZE))
 
-cnt = 1
+cnt = 0
 for epoch in range(EPOCHS):
     idx = np.random.randint(0, training_data.shape[0], BATCH_SIZE)
     x_real = training_data[idx]
@@ -141,11 +187,9 @@ for epoch in range(EPOCHS):
     discriminator_metric = 0.5 * np.add(discriminator_metric_real, discriminator_metric_generated)
     generator_metric = combined.train_on_batch(noise, y_real)
     
-    if epoch % SAVE_FREQ == 0:
+    if (epoch % SAVE_FREQ == 0) or (epoch == 0):
         save_images(cnt, fixed_noise)
         cnt += 1
-        print(f"{epoch} epoch, Discriminator accuracy: {100*  discriminator_metric[1]}, Generator accuracy: {100 * generator_metric[1]}")
+        print(f"{epoch} epoch, Discriminator accuracy (train/test): {discriminator_metric_real} / {discriminator_metric_generated} Generator accuracy: {generator_metric}")
 
-discriminator.save('discriminator.h5')
-generator.save('generator.h5')
-combined.save('combined.h5')
+save_models(discriminator, generator, combined)
