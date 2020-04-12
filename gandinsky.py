@@ -9,7 +9,7 @@ Team Members: Elnaz Asghari, Ruiwen Zhang, Sunit Nair
 """
 
 #The following commented line must be run in a new Colab session before running the actual code
-#%tensorflow_version 1.x
+%tensorflow_version 1.x
 
 from keras.layers import Input, Reshape, Dropout, Dense, Flatten, BatchNormalization, Activation, ZeroPadding2D
 from keras.layers.advanced_activations import LeakyReLU
@@ -33,7 +33,7 @@ if not os.path.exists(drive_path):
 
 # Grid to view generated images
 PREVIEW_ROWS = 4
-PREVIEW_COLS = 6
+PREVIEW_COLS = 7
 PREVIEW_MARGIN = 4
 
 #Other hyperparameters
