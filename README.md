@@ -1,4 +1,4 @@
-# gandinsky
+# GANdinsky
 Generative Adversarial Network (GAN) for creating art from portrait and abstract datasets
 
 Group members: Elnaz Asghari, Ruiwen Zhang, Sunit Nair
