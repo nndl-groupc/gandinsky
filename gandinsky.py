@@ -39,13 +39,13 @@ PREVIEW_MARGIN = 4
 #Other hyperparameters
 SAVE_FREQ = 100 #Save images every n iterations
 NOISE_SIZE = 128 #Starting point for image generation
-EPOCHS = 40000 #Total number of iterations
+EPOCHS = 50001 #Total number of iterations
 BATCH_SIZE = 64 #Batch size for epoch
 GENERATE_RES = 3
 IMAGE_SIZE = 128 # rows/cols
 IMAGE_CHANNELS = 3
 
-#Ensure that Google Drive is munted and file is available at path (or change path as required)
+#Ensure that Google Drive is mounted and file is available at path (or change path as required)
 #Reading data from .npy file containing compressed image data (128 x 128) stored on Google Drive
 training_data=np.load('drive/My Drive/prepared/abstract_data.npy')
 
