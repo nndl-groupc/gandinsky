@@ -33,7 +33,7 @@ if not os.path.exists(drive_path):
 
 # Grid to view generated images
 PREVIEW_ROWS = 4
-PREVIEW_COLS = 7
+PREVIEW_COLS = 6
 PREVIEW_MARGIN = 4
 
 #Other hyperparameters
@@ -44,10 +44,12 @@ BATCH_SIZE = 64 #Batch size for epoch
 GENERATE_RES = 3
 IMAGE_SIZE = 128 # rows/cols
 IMAGE_CHANNELS = 3
+CONTINUE_TRAINING = False   #Continue training with saved models (change path where models are saved to ensure)
+DATASET_VAR = 'portrait'  #Dataset to use (portrait/abstract)
 
-#Ensure that Google Drive is mounted and file is available at path (or change path as required)
+#Ensure that Google Drive is munted and file is available at path (or change path as required)
 #Reading data from .npy file containing compressed image data (128 x 128) stored on Google Drive
-training_data=np.load('drive/My Drive/prepared/abstract_data.npy')
+training_data=np.load('drive/My Drive/prepared/'+DATASET_VAR+'_data.npy')
 
 #Build discriminator model
 def build_discriminator(image_shape):    
@@ -154,15 +156,21 @@ def save_models(discriminator, generator, combined):
    
 image_shape = (IMAGE_SIZE, IMAGE_SIZE, IMAGE_CHANNELS)
 optimizer = Adam(1.5e-4, 0.5)
-discriminator = build_discriminator(image_shape)
-discriminator.compile(loss="binary_crossentropy",optimizer=optimizer, metrics=["accuracy"])
+if CONTINUE_TRAINING:
+    discriminator = load_model('drive/My Drive/models/'+DATASET_VAR+'/discriminator.h5', compile=True)
+    generator = load_model('drive/My Drive/models/'+DATASET_VAR+'/generator.h5', compile=True)
+else:
+    discriminator = build_discriminator(image_shape)
+    discriminator.compile(loss="binary_crossentropy",optimizer=optimizer, metrics=["accuracy"])
+    generator = build_generator(NOISE_SIZE, IMAGE_CHANNELS)
 
-generator = build_generator(NOISE_SIZE, IMAGE_CHANNELS)
 random_input = Input(shape=(NOISE_SIZE,))
 generated_image = generator(random_input)
 
 #Ensures that the generator fits weights to better learn from dataset and not just to beat the discriminator
-discriminator.trainable = False
+if (CONTINUE_TRAINING == False):
+    discriminator.trainable = False
+
 validity = discriminator(generated_image)
 
 combined = Model(random_input, validity)
