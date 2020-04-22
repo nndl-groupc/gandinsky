@@ -1,4 +1,5 @@
 #Team Members, Roles, and Responsibilities
+
 Course: Neural Networks & Deep Learning (Rutgers Business School - Newark)
 Instructor: Dr. Farid Alizadeh
 Team: Group C
