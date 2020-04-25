@@ -22,6 +22,10 @@ import os
 from google.colab import files
 from google.colab import drive
 import time
+import matplotlib.pyplot as plt
+
+print("Starting process.")
+print ("Current date and time:",time.strftime("%Y-%m-%d %H:%M:%S"))
 
 drive.mount('/content/drive', force_remount=True)
 
@@ -39,7 +43,7 @@ PREVIEW_MARGIN = 4
 #Other hyperparameters
 SAVE_FREQ = 100 #Save images every n iterations
 NOISE_SIZE = 128 #Starting point for image generation
-EPOCHS = 50001 #Total number of iterations
+EPOCHS = 50000 #Total number of iterations
 BATCH_SIZE = 64 #Batch size for epoch
 GENERATE_RES = 3
 IMAGE_SIZE = 128 # rows/cols
@@ -143,34 +147,61 @@ def save_images(cnt, noise):
 
 #Function to save models after completion
 def save_models(discriminator, generator, combined):
+    print("Creating folder to save models...")
     model_path = 'drive/My Drive/colab_output/'+dir_ext+'/models'
     if not os.path.exists(model_path):
         os.makedirs(model_path)
     d_filename = os.path.join(model_path,'discriminator.h5')
     g_filename = os.path.join(model_path,'generator.h5')
     c_filename = os.path.join(model_path,'combined.h5')
+    print("Saving discriminator model...")
     discriminator.save(d_filename)
+    print("Saving generator model...")
     generator.save(g_filename)
+    print("Saving combined model...")
     combined.save(c_filename)
 
-   
+def plot_history(c1_loss, c1_acc, c2_loss, c2_acc, c3_loss, c3_acc, g_loss, g_acc):
+	  #plot loss and accuracy history
+    print("Creating folder to save plots...")
+    plot_path = 'drive/My Drive/colab_output/'+dir_ext+'/plots'
+    if not os.path.exists(plot_path):
+        os.makedirs(plot_path)
+    loss_filename=os.path.join(plot_path,'loss_plot.png')
+    acc_filename=os.path.join(plot_path,'acc_plot.png')
+    plt.plot(c1_loss, label='discriminator_real')
+    plt.plot(c2_loss, label='discriminator_fake')
+    plt.plot(c3_loss, label='discriminator_average')
+    plt.plot(g_loss, label='generator')
+    plt.legend(loc="best")
+    plt.title('Loss')
+    print("Saving loss plot...")
+    plt.savefig(loss_filename)
+    plt.close()
+    plt.plot(c1_acc, label='discriminator_real')
+    plt.plot(c2_acc, label='discriminator_fake')
+    plt.plot(c3_acc, label='discriminator_average')
+    plt.plot(g_acc, label='generator')
+    plt.legend(loc="best")
+    plt.title('Accuracy')
+    print("Saving accuracy plot...")
+    plt.savefig(acc_filename)
+    plt.close()
+
 image_shape = (IMAGE_SIZE, IMAGE_SIZE, IMAGE_CHANNELS)
 optimizer = Adam(1.5e-4, 0.5)
+discriminator = build_discriminator(image_shape)
 if CONTINUE_TRAINING:
-    discriminator = load_model('drive/My Drive/models/'+DATASET_VAR+'/discriminator.h5', compile=True)
-    generator = load_model('drive/My Drive/models/'+DATASET_VAR+'/generator.h5', compile=True)
-else:
-    discriminator = build_discriminator(image_shape)
-    discriminator.compile(loss="binary_crossentropy",optimizer=optimizer, metrics=["accuracy"])
-    generator = build_generator(NOISE_SIZE, IMAGE_CHANNELS)
-
+    discriminator.load_weights('drive/My Drive/models/'+DATASET_VAR+'/discriminator.h5')
+discriminator.compile(loss="binary_crossentropy",optimizer=optimizer, metrics=["accuracy"])
+generator = build_generator(NOISE_SIZE, IMAGE_CHANNELS)
+if CONTINUE_TRAINING:
+    generator = load_model('drive/My Drive/models/'+DATASET_VAR+'/generator.h5')
 random_input = Input(shape=(NOISE_SIZE,))
 generated_image = generator(random_input)
 
 #Ensures that the generator fits weights to better learn from dataset and not just to beat the discriminator
-if (CONTINUE_TRAINING == False):
-    discriminator.trainable = False
-
+discriminator.trainable = False
 validity = discriminator(generated_image)
 
 combined = Model(random_input, validity)
@@ -181,8 +212,10 @@ y_fake = np.zeros((BATCH_SIZE, 1))
 
 fixed_noise = np.random.normal(0, 1, (PREVIEW_ROWS * PREVIEW_COLS, NOISE_SIZE))
 
+c1_loss, c1_acc, c2_loss, c2_acc, c3_loss, c3_acc, g_loss, g_acc = list(), list(), list(), list(), list(), list(), list(), list()
+
 cnt = 0
-for epoch in range(EPOCHS):
+for epoch in range(EPOCHS+1):
     idx = np.random.randint(0, training_data.shape[0], BATCH_SIZE)
     x_real = training_data[idx]
  
@@ -194,10 +227,22 @@ for epoch in range(EPOCHS):
  
     discriminator_metric = 0.5 * np.add(discriminator_metric_real, discriminator_metric_generated)
     generator_metric = combined.train_on_batch(noise, y_real)
-    
+
+    c1_loss.append(discriminator_metric_real[0])
+    c2_loss.append(discriminator_metric_generated[0])
+    c3_loss.append(discriminator_metric[0])
+    g_loss.append(generator_metric[0])
+    c1_acc.append(discriminator_metric_real[1])
+    c2_acc.append(discriminator_metric_generated[1])
+    c3_acc.append(discriminator_metric[1])
+    g_acc.append(generator_metric[1])
+
     if (epoch % SAVE_FREQ == 0) or (epoch == 0):
         save_images(cnt, fixed_noise)
         cnt += 1
-        print(f"{epoch} epoch, Discriminator accuracy (train/test): {discriminator_metric_real} / {discriminator_metric_generated} Generator accuracy: {generator_metric}")
+        print(f"Epoch {epoch}:  Discriminator accuracy (train/test): {discriminator_metric_real} / {discriminator_metric_generated} Generator accuracy: {generator_metric}")
 
 save_models(discriminator, generator, combined)
+plot_history(c1_loss, c1_acc, c2_loss, c2_acc, c3_loss, c3_acc, g_loss, g_acc)
+print ("Current date and time:",time.strftime("%Y-%m-%d %H:%M:%S"))
+print("End of program. Process completed successfully.")
