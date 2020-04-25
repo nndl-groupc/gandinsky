@@ -10,7 +10,7 @@ from PIL import Image
 
 IMAGE_SIZE = 128
 IMAGE_CHANNELS = 3
-IMAGE_DIR = 'Datasets/abs'
+IMAGE_DIR = 'Datasets/portrait'
 
 # Defining image dir path. Change this if you have different directory
 images_path = IMAGE_DIR 
@@ -32,4 +32,4 @@ training_data = np.reshape(training_data, (-1, IMAGE_SIZE, IMAGE_SIZE, IMAGE_CHA
 training_data = training_data / 127.5 - 1
 
 print('saving file...')
-np.save('abstract_data.npy', training_data)
+np.save('dataset.npy', training_data)
