@@ -4,7 +4,7 @@ Description: Creating art from portrait and abstract datasets
 Course: Neural Networks and Deep Learning
 Instructor: Dr. Farid Alizadeh
 Group: C
-Team Members: Elnaz Asghari, Ruiwen Zhang, Sunit Nair
+Team Members: Elnaz A. Torkamani, Ruiwen Zhang, Sunit Nair
 @author: groupc.nndl
 """
 
