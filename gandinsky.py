@@ -43,7 +43,7 @@ PREVIEW_MARGIN = 4
 #Other hyperparameters
 SAVE_FREQ = 100 #Save images every n iterations
 NOISE_SIZE = 128 #Starting point for image generation
-EPOCHS = 50000 #Total number of iterations
+EPOCHS = 50001 #Total number of iterations
 BATCH_SIZE = 64 #Batch size for epoch
 GENERATE_RES = 3
 IMAGE_SIZE = 128 # rows/cols
@@ -154,13 +154,16 @@ def save_models(discriminator, generator, combined):
     d_filename = os.path.join(model_path,'discriminator.h5')
     g_filename = os.path.join(model_path,'generator.h5')
     c_filename = os.path.join(model_path,'combined.h5')
+    discriminator.reset_metrics()
+    generator.reset_metrics()
+    combined.reset_metrics()
     print("Saving discriminator model...")
     discriminator.save(d_filename)
     print("Saving generator model...")
     generator.save(g_filename)
     print("Saving combined model...")
     combined.save(c_filename)
-
+    
 def plot_history(c1_loss, c1_acc, c2_loss, c2_acc, c3_loss, c3_acc, g_loss, g_acc):
 	  #plot loss and accuracy history
     print("Creating folder to save plots...")
@@ -196,7 +199,7 @@ if CONTINUE_TRAINING:
 discriminator.compile(loss="binary_crossentropy",optimizer=optimizer, metrics=["accuracy"])
 generator = build_generator(NOISE_SIZE, IMAGE_CHANNELS)
 if CONTINUE_TRAINING:
-    generator = load_model('drive/My Drive/models/'+DATASET_VAR+'/generator.h5')
+    generator.load_weights('drive/My Drive/models/'+DATASET_VAR+'/generator.h5')
 random_input = Input(shape=(NOISE_SIZE,))
 generated_image = generator(random_input)
 
