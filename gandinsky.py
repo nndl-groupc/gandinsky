@@ -43,7 +43,7 @@ PREVIEW_MARGIN = 4
 #Other hyperparameters
 SAVE_FREQ = 100 #Save images every n iterations
 NOISE_SIZE = 128 #Starting point for image generation
-EPOCHS = 50001 #Total number of iterations
+EPOCHS = 50000 #Total number of iterations
 BATCH_SIZE = 64 #Batch size for epoch
 GENERATE_RES = 3
 IMAGE_SIZE = 128 # rows/cols
